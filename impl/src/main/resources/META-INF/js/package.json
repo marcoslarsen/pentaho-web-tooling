@@ -1,0 +1,13 @@
+{
+  "name": "${project.artifactId}",
+  "version": "${project.version}",
+  "private": true,
+  "description": "${project.description}",
+  "license": "MIT",
+  "main": "app.js",
+  "dependencies": {
+    "lodash": "${lodash.version}",
+    "react": "${react.version}",
+    "react-dom": "${react-dom.version}"
+  }
+}
