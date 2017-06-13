@@ -22,17 +22,17 @@
 
     <dependency>
       <groupId>org.webjars.npm</groupId>
+      <artifactId>lodash</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
       <artifactId>react</artifactId>
     </dependency>
 
     <dependency>
       <groupId>org.webjars.npm</groupId>
       <artifactId>react-dom</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.webjars.npm</groupId>
-      <artifactId>lodash</artifactId>
     </dependency>
   </dependencies>
 
@@ -47,6 +47,7 @@
         <excludes>
           <exclude>META-INF/**/*</exclude>
           <exclude>OSGI-INF/blueprint/*</exclude>
+          <exclude>web/**/*</exclude>
         </excludes>
       </resource>
 

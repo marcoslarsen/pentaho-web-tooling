@@ -5,13 +5,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const WEBJARS_PATH = path.join(__dirname, "impl/target/dependency/META-INF/resources/webjars");
+const ENTRY_PATH = path.join(__dirname, "impl/src/main/resources/web");
+const OUTPUT_PATH = path.join(__dirname, "impl/src/main/javascript/web");
+
 module.exports = {
   entry: {
-    app: "./impl/src/main/resources/web/app.jsx"
+    app: ENTRY_PATH + '/app.jsx'
   },
 
   output: {
-    path: path.join(__dirname, "impl/src/main/javascript/web"),
+    path: OUTPUT_PATH,
     filename: "[name].js"
   },
 
@@ -22,7 +26,6 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
         options: {
-          plugins: ["transform-es2015-modules-amd"],
           presets: ["es2015", "react"]
         }
       },
@@ -39,32 +42,31 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: "./impl/src/main/resources/web/index.html" // generate index.html
+      template: ENTRY_PATH + '/index.html'  // generate index.html
     }),
-    new ExtractTextPlugin('styles.css'),                   // extract the css
+    new ExtractTextPlugin('styles.css'),    // extract the css
     new CleanWebpackPlugin([
-      path.join(__dirname, "impl/src/main/javascript/web")
+      OUTPUT_PATH
     ], { dry: true, "watch": true })
   ],
 
   devServer: {
-    contentBase: path.join(__dirname, "impl/src/main/javascript/web"),
+    contentBase: OUTPUT_PATH,
     compress: true,
     port: 9000,
     proxy: {
-      "/content/webcontext.js": "http://localhost:9051" ,
-      "/requirejs-manager/js/require-init.js": "http://localhost:9051"
+      "*": "http://localhost:9051"
     }
   },
 
   target: "web",
 
   resolve: {
-    modules: [
-      path.join(__dirname, "impl/src/main/resources/web"),
-      "node_modules"
-    ]
+    modules: ["node_modules", ENTRY_PATH, WEBJARS_PATH],
+    alias: {
+      'react': 'react/15.5.4/dist/react.js',
+      'react-dom': 'react-dom/15.5.4/dist/react-dom.js'
+    }
   }
 
 };

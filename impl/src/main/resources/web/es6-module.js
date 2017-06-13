@@ -1,2 +1,1 @@
-const name = "ES6 Module";
-export {name};
+export const name = "ES6 Module";
