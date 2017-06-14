@@ -1,4 +1,3 @@
-import * as styles from 'styles.scss'
 import React from 'react'; 
 import {render} from 'react-dom'; 
 import amdModule from './amd-module'; 

@@ -4,7 +4,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
     <meta charset="UTF-8">
     <title>Pentaho Webpack</title>
+    <!-- inject:css -->
+    <!-- endinject -->
     <script type="text/javascript" src="/content/webcontext.js"></script>
+    <script>
+      "use strict"
+
+      require.config({
+        packages: [
+          {
+            "name": "react_15.5.4",
+            "location": "/react/15.5.4/dist",
+            "main": "react.min"
+          },
+          {
+            "name": "react-dom_15.5.4",
+            "location": "/react-dom/15.5.4/dist",
+            "main": "react-dom.min"
+          }
+        ]
+      });
+    
+      require(['./app'], function(app) {
+        console.log(">", app);
+      });
+
+    </script>
   </head>
   <body>
     <div id="root">App</div>

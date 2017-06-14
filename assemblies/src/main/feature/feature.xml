@@ -5,6 +5,10 @@
     <feature>pentaho-requirejs-osgi-manager</feature>
     <feature>pentaho-deployers</feature>
 
+    <bundle>pentaho-webjars:mvn:org.webjars.npm/lodash/4.17.4</bundle>
+    <bundle>pentaho-webjars:mvn:org.webjars.npm/react/15.5.4</bundle>
+    <bundle>pentaho-webjars:mvn:org.webjars.npm/react-dom/15.5.4</bundle>
+
   </feature>
 
 </features>
