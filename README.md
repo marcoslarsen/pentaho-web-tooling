@@ -3,19 +3,19 @@ Project that integrates transpile (Babel) and bundling (Webpack) tools to pentah
 
 Two branches were created to explore different approaches:
 
-__ Webpack __
+__Webpack__
 
 ```
 $ git checkout webpack
 ```
 
-__ Gulp __
+__Gulp__
 
 ```
-$ git checkout webpack
+$ git checkout gulp
 ```
 
-__ Build __
+__Build__
 
 This will build, and package the whole project. The artifact will be generated in: ```target```
 
@@ -23,7 +23,7 @@ This will build, and package the whole project. The artifact will be generated i
 $ mvn package
 ```
 
-__ Dev Server __
+__Dev Server__
 
 This will launch a dev server with "hot reloading" in: http://localhost:9000
 
