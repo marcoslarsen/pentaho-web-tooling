@@ -1,9 +1,5 @@
-define([], function () {
-  'use strict';
-
-  define(['es6-module'], function (module) {
-    return {
-      name: 'AMD Module + ' + module.name
-    };
-  });
+define(['es6-module'] , function (module) { 
+  return { 
+    name: 'AMD Module + ' + module.name 
+  } 
 });

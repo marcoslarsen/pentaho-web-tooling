@@ -5,11 +5,11 @@
 
   <parent>
     <groupId>org.pentaho</groupId>
-    <artifactId>pentaho-webpack-modules</artifactId>
+    <artifactId>pentaho-web-tooling-modules</artifactId>
     <version>0.0.1</version>
   </parent>
 
-  <artifactId>pentaho-webpack-assembly</artifactId>
+  <artifactId>pentaho-web-tooling-assembly</artifactId>
   <version>0.0.1</version>
   <packaging>kar</packaging>
 
@@ -20,7 +20,7 @@
   <dependencies>
     <dependency>
       <groupId>org.pentaho</groupId>
-      <artifactId>pentaho-webpack</artifactId>
+      <artifactId>pentaho-web-tooling</artifactId>
       <version>0.0.1</version>
     </dependency>
   </dependencies>

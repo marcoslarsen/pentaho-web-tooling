@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>org.pentaho</groupId>
-  <artifactId>pentaho-webpack-modules</artifactId>
+  <artifactId>pentaho-web-tooling-modules</artifactId>
   <version>0.0.1</version>
   <packaging>pom</packaging>
 
@@ -68,6 +68,25 @@
 
         <executions>
           <execution>
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+          </execution>
+
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+
+          <execution>
             <id>npm run build</id>
             <goals>
               <goal>npm</goal>
@@ -75,6 +94,18 @@
             <phase>generate-resources</phase>
             <configuration>
               <arguments>run build</arguments>
+            </configuration>
+          </execution>
+
+          <!-- Run Development server with mvn frontend:npm@server -->
+          <execution>
+            <id>server</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>none</phase>
+            <configuration>
+              <arguments>run server</arguments>
             </configuration>
           </execution>
         </executions>

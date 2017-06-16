@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
     <meta charset="UTF-8">
-    <title>Pentaho Webpack</title>
+    <title>Pentaho Web Tooling</title>
     <!-- inject:css -->
     <link rel="stylesheet" href="styles.css">
     <!-- endinject -->
@@ -12,23 +12,13 @@
       "use strict"
 
       require.config({
-        packages: [
-          {
-            "name": "react_15.5.4",
-            "location": "/react/15.5.4/dist",
-            "main": "react.min"
-          },
-          {
-            "name": "react-dom_15.5.4",
-            "location": "/react-dom/15.5.4/dist",
-            "main": "react-dom.min"
-          }
-        ]
+        paths: {
+          'react': '/react/15.5.4/dist/react',
+          'react-dom': '/react-dom/15.5.4/dist/react-dom'
+        }
       });
     
-      require(['./app'], function(app) {
-        console.log(">", app);
-      });
+      require(['./app'], function(app) {});
 
     </script>
   </head>
