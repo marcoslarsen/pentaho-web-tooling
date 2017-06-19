@@ -8,6 +8,7 @@
   "dependencies": {
     "lodash": "${lodash.version}",
     "react": "${react.version}",
-    "react-dom": "${react-dom.version}"
+    "react-dom": "${react-dom.version}",
+    "fbjs": "${fbjs.version}"
   }
 }

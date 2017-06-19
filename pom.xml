@@ -23,8 +23,9 @@
     <js.project.list>lodash, react, react-dom</js.project.list>
     <pax-web-extender-whiteboard.version>3.1.4</pax-web-extender-whiteboard.version>
     <lodash.version>4.17.4</lodash.version>
-    <react.version>15.5.4</react.version>
+    <react.version>15.6.1</react.version>
     <react-dom.version>15.5.4</react-dom.version>
+    <fbjs.version>0.8.12</fbjs.version>
   </properties>
 
   <dependencyManagement>
@@ -55,6 +56,12 @@
         <artifactId>react-dom</artifactId>
         <version>${react-dom.version}</version>
         <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.webjars.npm</groupId>
+        <artifactId>fbjs</artifactId>
+        <version>${fbjs.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

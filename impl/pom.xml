@@ -34,6 +34,11 @@
       <groupId>org.webjars.npm</groupId>
       <artifactId>react-dom</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>fbjs</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
