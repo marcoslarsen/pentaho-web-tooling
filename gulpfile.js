@@ -1,27 +1,22 @@
 'use strict';
 
-var gulp		      	= require('gulp');
-var babel 					= require('gulp-babel');
-var sass 						= require('gulp-sass');
-var autoprefixer 		= require('gulp-autoprefixer');
-var inject 					= require('gulp-inject');
-var debug 					= require('gulp-debug');
-var ignore 					= require('gulp-ignore');
-var foreach 				= require('gulp-foreach');
-var add 						= require('gulp-add-src');
-var browserSync 		= require('browser-sync').create();
-var proxyMiddleware = require('http-proxy-middleware');
-var moduleFormats 	= require('js-module-formats');
-var runSequence   	= require('run-sequence');
-var path				  	= require('path');
-var del 						= require('del'); 
-var fs            	= require('fs');
-var glob            = require('glob');
+const gulp		      	= require('gulp');
+const babel 					= require('gulp-babel');
+const sass 						= require('gulp-sass');
+const autoprefixer 		= require('gulp-autoprefixer');
+const inject 					= require('gulp-inject');
+const debug 					= require('gulp-debug');
+const foreach 				= require('gulp-foreach');
+const add 						= require('gulp-add-src');
+const browserSync 		= require('browser-sync').create();
+const moduleFormats 	= require('js-module-formats');
+const runSequence   	= require('run-sequence');
+const del 						= require('del'); 
+const fs            	= require('fs');
+const glob            = require('glob');
 
-var config = {
-	dev_path: "impl/src/main/resources/web/",
-  dist_path: "impl/src/main/javascript/web/"
-}
+const DEV_PATH = "impl/src/main/resources/web/";
+const DIST_PATH = "impl/src/main/javascript/web/";
 
 // Default task
 gulp.task('default', (done) => {
@@ -29,7 +24,7 @@ gulp.task('default', (done) => {
 });
 
 gulp.task('clean', () => {
-	return del.sync([config.dist_path]);
+	return del.sync([DIST_PATH]);
 });
 
 gulp.task('scripts', () => {
@@ -40,31 +35,30 @@ gulp.task('scripts', () => {
 		}))
 		.pipe(add(filterScripts().noTranspile))
 		.pipe(debug())
-		.pipe(gulp.dest(config.dist_path))
+		.pipe(gulp.dest(DIST_PATH))
 });
 
 gulp.task('styles', () => {
-	return gulp.src(config.dev_path + '/**/*.scss')
+	return gulp.src(DEV_PATH + '/**/*.scss')
     .pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer('last 2 version'))
-    .pipe(gulp.dest(config.dist_path))
+    .pipe(gulp.dest(DIST_PATH))
 });
 
 gulp.task('inject', () => {
-	var toInject = gulp.src(config.dist_path + '/**/*.css', {read: false});
-	return gulp.src(config.dev_path + '/index.html')
-		.pipe(inject(toInject, {ignorePath: config.dist_path, addRootSlash: false}))
-    .pipe(gulp.dest(config.dist_path))
+	var toInject = gulp.src(DIST_PATH + '/**/*.css', {read: false});
+	return gulp.src(DEV_PATH + '/index.html')
+    .pipe(gulp.dest(DIST_PATH))
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', ['default'], () => {
   browserSync.init({
 		proxy: 'http://localhost:9051',
-		serveStatic: [config.dist_path]
+		serveStatic: [DIST_PATH]
 	});
 
-	gulp.watch(config.dev_path + '/**/*.scss', ['styles', 'reload']);
-  gulp.watch(config.dev_path + '/**/*.{js,jsx}', ['scripts', 'reload']);
+	gulp.watch(DEV_PATH + '/**/*.scss', ['styles', 'reload']);
+  gulp.watch(DEV_PATH + '/**/*.{js,jsx}', ['scripts', 'reload']);
 });
 
 gulp.task('reload', () => {
@@ -73,12 +67,12 @@ gulp.task('reload', () => {
 
 
 function filterScripts() {
-	var scripts = glob.sync(config.dev_path + '/**/*.{js,jsx}');
-	var transpile = [];
-	var noTranspile = [];
+	let scripts = glob.sync(DEV_PATH + '/**/*.{js,jsx}');
+	let transpile = [];
+	let noTranspile = [];
 	scripts.forEach((file) => {
-		var source = fs.readFileSync(file, 'utf8');
-		var module = moduleFormats.detect(source);
+		let source = fs.readFileSync(file, 'utf8');
+		let module = moduleFormats.detect(source);
 		module === 'amd' ? noTranspile.push(file) : transpile.push(file);
 	})
 	return {transpile, noTranspile}

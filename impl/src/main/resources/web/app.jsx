@@ -1,7 +1,7 @@
 import React from 'react'; 
 import {render} from 'react-dom'; 
 import amdModule from './amd-module'; 
-import artifactsService from './artifacts-service';
+import artifacts from './artifacts';
  
 class App extends React.Component { 
   render () { 
@@ -16,7 +16,7 @@ class App extends React.Component {
 
 App.defaultProps = { 
    name: amdModule.name,
-   artifacts: artifactsService()
+   artifacts: artifacts()
 } 
  
 render( 

@@ -1,11 +1,11 @@
-define(['react', 'react-dom', './amd-module', './artifacts-service'], function (_react, _reactDom, _amdModule, _artifactsService) {
+define(['react', 'react-dom', './amd-module', './artifacts'], function (_react, _reactDom, _amdModule, _artifacts) {
   'use strict';
 
   var _react2 = _interopRequireDefault(_react);
 
   var _amdModule2 = _interopRequireDefault(_amdModule);
 
-  var _artifactsService2 = _interopRequireDefault(_artifactsService);
+  var _artifacts2 = _interopRequireDefault(_artifacts);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -96,7 +96,7 @@ define(['react', 'react-dom', './amd-module', './artifacts-service'], function (
 
   App.defaultProps = {
     name: _amdModule2.default.name,
-    artifacts: (0, _artifactsService2.default)()
+    artifacts: (0, _artifacts2.default)()
   };
 
   (0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('root'));
