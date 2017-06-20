@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf impl/src/main/javascript/web/",
-    "copy": "copy 'impl/src/main/resources/web/**/*.html' 'impl/src/main/javascript/web/'",
-    "scripts": "babel 'impl/src/main/resources/web/**/*.{js,jsx}' --out-dir 'impl/src/main/javascript/web/'",
+    "copy": "copy impl/src/main/resources/web/**/*.html impl/src/main/javascript/web/",
+    "scripts": "babel impl/src/main/resources/web/ --out-dir impl/src/main/javascript/web/ --presets=env,react --plugins=transform-es2015-modules-amd",
     "sass": "node-sass --include-path scss impl/src/main/resources/web/ -o impl/src/main/javascript/web/",
     "browsersync": "browser-sync start --ss impl/src/main/javascript/web/ -p 'http://localhost:9051' --port 9000",
     "watch-css": "nodemon -e scss -x 'npm run build-css'",
@@ -15,6 +15,9 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
     "browser-sync": "^2.18.12",
     "copy": "^0.3.0",
     "node-sass": "^4.5.3",

@@ -1,13 +1,13 @@
 import React from 'react'; 
 import {render} from 'react-dom'; 
-import amdModule from './amd-module'; 
+import e6Module from './es6-module'; 
 import artifactsService from './artifacts-service';
  
 class App extends React.Component { 
   render () { 
     return ( 
       <div> 
-        <h1>{this.props.name}!</h1> 
+        <h1>{this.props.moduleName}!</h1> 
         <h2>{this.props.artifacts}</h2> 
       </div> 
     ); 
@@ -15,7 +15,7 @@ class App extends React.Component {
 } 
 
 App.defaultProps = { 
-   name: amdModule.name,
+   moduleName: e6Module.name,
    artifacts: artifactsService()
 } 
  
