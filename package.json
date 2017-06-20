@@ -10,7 +10,8 @@
     "sass": "node-sass --include-path scss 'impl/src/main/resources/web/' -o 'impl/src/main/javascript/web/'",
     "server": "browser-sync start --ss 'impl/src/main/javascript/web/' -f 'impl/src/main/javascript/web/' -p 'http://localhost:9051' --port 9000",
     "build": "npm run clean && npm run copy && npm run sass && npm run scripts",
-    "watch": "watch 'npm run build' 'impl/src/main/resources/web/'"
+    "dev": "npm run sass && npm run scripts",
+    "watch": "watch 'npm run dev' 'impl/src/main/resources/web/' & npm run server"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
