@@ -1,1 +1,2 @@
-export const name = "ES6 Module";
+const module = {name: 'es6Module'};
+export default module;

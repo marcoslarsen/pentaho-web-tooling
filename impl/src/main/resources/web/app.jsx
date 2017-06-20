@@ -1,7 +1,7 @@
 import React from 'react'; 
 import {render} from 'react-dom'; 
 import e6Module from './es6-module'; 
-import artifactsService from './artifacts-service';
+import artifactsService from './api/artifacts-service';
  
 class App extends React.Component { 
   render () { 
@@ -13,6 +13,8 @@ class App extends React.Component {
     ); 
   } 
 } 
+
+console.log(e6Module);
 
 App.defaultProps = { 
    moduleName: e6Module.name,

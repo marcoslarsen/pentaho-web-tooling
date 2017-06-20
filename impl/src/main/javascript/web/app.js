@@ -1,4 +1,4 @@
-define(['react', 'react-dom', './es6-module', './artifacts-service'], function (_react, _reactDom, _es6Module, _artifactsService) {
+define(['react', 'react-dom', './es6-module', './api/artifacts-service'], function (_react, _reactDom, _es6Module, _artifactsService) {
   'use strict';
 
   var _react2 = _interopRequireDefault(_react);
