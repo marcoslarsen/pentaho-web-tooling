@@ -94,10 +94,8 @@ define(['react', 'react-dom', './es6-module', './api/artifacts-service'], functi
     return App;
   }(_react2.default.Component);
 
-  console.log(_es6Module2.default);
-
   App.defaultProps = {
-    moduleName: 'e6Module.name',
+    moduleName: _es6Module2.default.name,
     artifacts: (0, _artifactsService2.default)()
   };
 

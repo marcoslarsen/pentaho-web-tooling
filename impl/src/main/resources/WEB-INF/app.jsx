@@ -14,10 +14,8 @@ class App extends React.Component {
   } 
 } 
 
-console.log(e6Module);
-
 App.defaultProps = { 
-   moduleName: 'e6Module.name',
+   moduleName: e6Module.name,
    artifacts: artifactsService()
 } 
  

@@ -3,15 +3,24 @@
   "version": "0.0.1",
   "description": "Pentaho Web Tooling",
   "private": true,
+  "config": {
+    "dev": "impl/src/main/resources/WEB-INF",
+    "dist": "impl/src/main/javascript/web",
+    "proxy": "http://localhost:9051"
+  },
   "scripts": {
-    "clean": "rm -rf impl/src/main/javascript/web/",
-    "copy": "copy impl/src/main/resources/web/**/*.html impl/src/main/javascript/web/",
-    "scripts": "babel impl/src/main/resources/web/ --out-dir impl/src/main/javascript/web/ --presets=env,react --plugins=transform-es2015-modules-amd",
-    "sass": "node-sass --include-path scss 'impl/src/main/resources/web/' -o 'impl/src/main/javascript/web/'",
-    "server": "browser-sync start --ss 'impl/src/main/javascript/web/' -f 'impl/src/main/javascript/web/' -p 'http://localhost:9051' --port 9000",
-    "build": "npm run clean && npm run copy && npm run sass && npm run scripts",
-    "dev": "npm run sass && npm run scripts",
-    "watch": "watch 'npm run dev' 'impl/src/main/resources/web/' & npm run server"
+    "clean": "rimraf $npm_package_config_dist && mkdirp $npm_package_config_dist",
+    "js": "babel $npm_package_config_dev --out-dir $npm_package_config_dist --presets=env,react --plugins=transform-es2015-modules-amd",
+    "css": "node-sass ./$npm_package_config_dev -o ./$npm_package_config_dist",
+    "html": "copy $npm_package_config_dev/**/*.html $npm_package_config_dist && npm run inject",
+    "inject": "postbuild -i $npm_package_config_dev/index.html -o $npm_package_config_dist/index.html -c $npm_package_config_dist/styles -g impl/src/main/javascript/web/",
+    "watch": "parallel watch:js watch:css watch:html",
+    "watch:js": "nodemon -e js,jsx -w $npm_package_config_dev --exec npm run js",
+    "watch:css": "nodemon -e css,scss -w $npm_package_config_dev --exec npm run css",
+    "watch:html": "nodemon -e html -w $npm_package_config_dev --exec npm run html",
+    "build": "npm run clean && npm run js && npm run css && npm run html",
+    "dev": "parallel server watch",
+    "server": "npm run build && browser-sync start --ss $npm_package_config_dist -f $npm_package_config_dist -p $npm_package_config_proxy"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -22,6 +31,8 @@
     "copy": "^0.3.0",
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
-    "watch": "^1.0.2"
+    "npm-parallel": "^2.0.1",
+    "postbuild": "^2.0.0",
+    "rimraf": "^2.6.1"
   }
 }
